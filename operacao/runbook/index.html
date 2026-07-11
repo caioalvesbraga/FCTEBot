@@ -1160,6 +1160,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#atualizar-o-codigo-src-exige-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atualizar o código (src/) — exige --build
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gerenciar-o-modelo-do-ollama" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1912,6 +1923,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#atualizar-o-codigo-src-exige-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atualizar o código (src/) — exige --build
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gerenciar-o-modelo-do-ollama" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2101,22 +2123,53 @@ Compose costuma ser <code>docker-compose.yml -f docker-compose.gpu.yml</code>.</
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;query&quot;:&quot;sua pergunta de teste&quot;}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
 </code></pre></div>
+<h2 id="atualizar-o-codigo-src-exige-build">Atualizar o código (<code>src/</code>) — exige <code>--build</code><a class="headerlink" href="#atualizar-o-codigo-src-exige-build" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Base × código: procedimentos diferentes</p>
+<ul>
+<li><strong>Base de conhecimento (<code>Infos Adms UnB/</code>)</strong> é um <strong>volume montado</strong> → basta
+  <code>ingest --force</code> + <code>--force-recreate app</code> + <code>FLUSHALL</code>.</li>
+<li><strong>Código (<code>src/</code>)</strong> é <strong>embutido na imagem Docker</strong> no build (não é volume).
+  Logo, <code>--force-recreate</code> <strong>não</strong> atualiza o código — ele reusa a mesma
+  imagem. É preciso <strong>reconstruir a imagem com <code>--build</code></strong>.</li>
+</ul>
+</div>
+<p>Enviar o código e reconstruir:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 1. enviar o src/ atualizado</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>scp<span class="w"> </span>-P<span class="w"> </span>&lt;PORT&gt;<span class="w"> </span>-i<span class="w"> </span>~/.ssh/&lt;chave&gt;<span class="w"> </span>-r<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="s2">&quot;/mnt/c/Users/caiob/Downloads/TCC/FCTEBot/src&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>root@&lt;HOST&gt;:/root/FCTEBot/
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># 2. reconstruir a imagem do app (COPY src/ pega o código novo) + limpar cache</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>ssh<span class="w"> </span>-p<span class="w"> </span>&lt;PORT&gt;<span class="w"> </span>-i<span class="w"> </span>~/.ssh/&lt;chave&gt;<span class="w"> </span>root@&lt;HOST&gt;<span class="w"> </span><span class="s2">&quot;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="s2">  cd /root/FCTEBot &amp;&amp;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="s2">  docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d --build app &amp;&amp;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="s2">  docker exec fctebot-redis redis-cli FLUSHALL</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="s2">&quot;</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Diagnóstico do sintoma clássico</p>
+<p>Se o <code>grep</code> no arquivo em disco (<code>/root/FCTEBot/src/...</code>) mostra o código
+<strong>correto</strong>, mas o <code>/query</code> ainda responde o <strong>antigo</strong> com
+<code>"cache_hit": "none"</code>, então a <strong>imagem está velha</strong> — rode <code>up -d --build app</code>.
+Se <code>"cache_hit"</code> for <code>l1</code>/<code>l2</code>, é cache → <code>FLUSHALL</code>.</p>
+</div>
 <h2 id="gerenciar-o-modelo-do-ollama">Gerenciar o modelo do Ollama<a class="headerlink" href="#gerenciar-o-modelo-do-ollama" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># listar modelos baixados</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>fctebot-ollama<span class="w"> </span>ollama<span class="w"> </span>list
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># baixar/atualizar o modelo configurado no .env</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>make<span class="w"> </span>prod-model
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># baixar um modelo específico</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>fctebot-ollama<span class="w"> </span>ollama<span class="w"> </span>pull<span class="w"> </span>qwen2.5:7b
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># listar modelos baixados</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>fctebot-ollama<span class="w"> </span>ollama<span class="w"> </span>list
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># baixar/atualizar o modelo configurado no .env</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>make<span class="w"> </span>prod-model
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># baixar um modelo específico</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>fctebot-ollama<span class="w"> </span>ollama<span class="w"> </span>pull<span class="w"> </span>qwen2.5:7b
 </code></pre></div>
 <p>Trocar de modelo: ajuste <code>OLLAMA_MODEL</code> no <code>.env</code>, baixe-o e recrie o <code>app</code>.</p>
 <h2 id="cache">Cache<a class="headerlink" href="#cache" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># estatísticas</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:8000/cache/stats<span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># limpar tudo (após mudanças na base ou respostas ruins cacheadas)</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>fctebot-redis<span class="w"> </span>redis-cli<span class="w"> </span>FLUSHALL
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># ou via API</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span>http://localhost:8000/cache
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># estatísticas</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:8000/cache/stats<span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># limpar tudo (após mudanças na base ou respostas ruins cacheadas)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>fctebot-redis<span class="w"> </span>redis-cli<span class="w"> </span>FLUSHALL
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># ou via API</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span>http://localhost:8000/cache
 </code></pre></div>
 <h2 id="backup-e-restauracao">Backup e restauração<a class="headerlink" href="#backup-e-restauracao" title="Permanent link">&para;</a></h2>
 <p>O que preservar:</p>
@@ -2127,29 +2180,29 @@ Compose costuma ser <code>docker-compose.yml -f docker-compose.gpu.yml</code>.</
 <li><strong><code>.env</code></strong> — configuração e segredos (<strong>não</strong> versionar).</li>
 <li><strong>Volume <code>redis-data</code></strong> — cache (não crítico; pode ser descartado).</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># backup dos índices e da base</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>tar<span class="w"> </span>czf<span class="w"> </span>backup-<span class="k">$(</span>date<span class="w"> </span>+%F<span class="k">)</span>.tgz<span class="w"> </span><span class="s2">&quot;Infos Adms UnB&quot;</span><span class="w"> </span>data<span class="w"> </span>.env
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># backup dos índices e da base</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>tar<span class="w"> </span>czf<span class="w"> </span>backup-<span class="k">$(</span>date<span class="w"> </span>+%F<span class="k">)</span>.tgz<span class="w"> </span><span class="s2">&quot;Infos Adms UnB&quot;</span><span class="w"> </span>data<span class="w"> </span>.env
 </code></pre></div>
 <h2 id="reiniciar-atualizar-codigo">Reiniciar / atualizar código<a class="headerlink" href="#reiniciar-atualizar-codigo" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># reiniciar apenas o backend</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>-f<span class="w"> </span>docker-compose.gpu.yml<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>app
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># atualizar código a partir do Git e reconstruir</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>git<span class="w"> </span>pull<span class="w"> </span>--ff-only
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>-f<span class="w"> </span>docker-compose.gpu.yml<span class="w"> </span>build<span class="w"> </span>app
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>-f<span class="w"> </span>docker-compose.gpu.yml<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>app
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># reiniciar apenas o backend</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>-f<span class="w"> </span>docker-compose.gpu.yml<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>app
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># atualizar código a partir do Git e reconstruir</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>git<span class="w"> </span>pull<span class="w"> </span>--ff-only
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>-f<span class="w"> </span>docker-compose.gpu.yml<span class="w"> </span>build<span class="w"> </span>app
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>-f<span class="w"> </span>docker-compose.gpu.yml<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>app
 </code></pre></div>
 <h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># voltar para um commit/tag anterior e reconstruir</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>&lt;tag_ou_commit&gt;
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>-f<span class="w"> </span>docker-compose.gpu.yml<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># voltar para um commit/tag anterior e reconstruir</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>&lt;tag_ou_commit&gt;
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>-f<span class="w"> </span>docker-compose.gpu.yml<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
 </code></pre></div>
 <p>Para reverter apenas a base de conhecimento, restaure <code>Infos Adms UnB/</code> do
 backup e repita o <a href="#atualizar-a-base-de-conhecimento-procedimento-padrao">procedimento de atualização</a>.</p>
 <h2 id="logs">Logs<a class="headerlink" href="#logs" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>fctebot-app<span class="w">        </span><span class="c1"># backend</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>fctebot-ollama<span class="w">     </span><span class="c1"># LLM</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>fctebot-frontend<span class="w">   </span><span class="c1"># nginx do frontend</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>fctebot-app<span class="w">        </span><span class="c1"># backend</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>fctebot-ollama<span class="w">     </span><span class="c1"># LLM</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>fctebot-frontend<span class="w">   </span><span class="c1"># nginx do frontend</span>
 </code></pre></div>
 <blockquote>
 <p><strong>TODO (continuidade):</strong> configurar rotação de logs (<code>logs/</code> cresce

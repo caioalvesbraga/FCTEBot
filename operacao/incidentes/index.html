@@ -1962,6 +1962,12 @@
 <li><strong>Ingestão não executada</strong> → <code>docker exec fctebot-app python scripts/ingest.py --force</code>.</li>
 <li><strong>Arquivo não chegou ao servidor</strong> → confirme:
    <code>docker exec fctebot-app grep -n "texto novo" "/app/Infos Adms UnB/arquivo.md"</code>.</li>
+<li><strong>Correção de código (<code>src/</code>) não aplicada</strong> → se o arquivo em disco já está
+   correto mas o <code>/query</code> responde o antigo com <code>"cache_hit": "none"</code>, a <strong>imagem
+   Docker está velha</strong>. O <code>src/</code> é embutido na imagem, então <code>--force-recreate</code>
+   não basta: reconstrua com
+   <code>docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d --build app</code>.
+   Ver <a href="../runbook/#atualizar-o-codigo-src-exige-build">Runbook → Atualizar o código</a>.</li>
 </ol>
 <h2 id="health-retorna-degraded-ou-error"><code>/health</code> retorna <code>degraded</code> ou <code>error</code><a class="headerlink" href="#health-retorna-degraded-ou-error" title="Permanent link">&para;</a></h2>
 <ul>
