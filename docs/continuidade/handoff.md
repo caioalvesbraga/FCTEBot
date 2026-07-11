@@ -5,8 +5,9 @@ projeto. Leitura estimada: 10 minutos.
 
 ## O que é
 
-Assistente virtual (Telegram + web) que responde dúvidas administrativas da
-FCTE/UnB usando RAG local-first. Produto de TCC2 de Engenharia de Software.
+Assistente virtual com **interface web (Vue 3)** que responde dúvidas
+administrativas da FCTE/UnB usando RAG local-first. Um bot do Telegram é
+suportado como canal opcional. Produto de TCC2 de Engenharia de Software.
 
 ## Suas 3 primeiras horas
 

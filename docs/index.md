@@ -44,7 +44,7 @@ de APIs pagas).
 
 ## Visão em 30 segundos
 
-- **Interface:** frontend web (Vue 3) e bot do Telegram.
+- **Interface:** aplicação web em Vue 3 (interface oficial); bot do Telegram como canal opcional.
 - **Backend:** FastAPI expõe `POST /query`, orquestrando o pipeline RAG.
 - **Pipeline:** cache (Redis) → recuperação híbrida (TF-IDF + FAISS + RRF) →
   re-ranking (cross-encoder) → geração (Ollama local, com *fallback* Gemini).
@@ -54,7 +54,7 @@ de APIs pagas).
 
 ```mermaid
 flowchart LR
-    U[Usuário] -->|Telegram / Web| API[FastAPI /query]
+    U[Usuário] -->|App Web Vue 3| API[FastAPI /query]
     API --> P[Pipeline RAG]
     P --> C[(Redis L1/L2)]
     P --> R[Recuperação híbrida<br/>TF-IDF + FAISS + RRF]

@@ -29,5 +29,5 @@ ajuste conforme necessidade. Itens marcados como *dívida* estão detalhados em
 - [ ] **Painel de administração** para editar a base sem acesso ao servidor.
 
 > **Como usar este roadmap:** ao concluir um item, mova-o para o
-> [CHANGELOG](https://github.com/SEU_USUARIO/FCTEBot/blob/main/CHANGELOG.md) e,
+> [CHANGELOG](https://github.com/caioalvesbraga/FCTEBot/blob/main/CHANGELOG.md) e,
 > se envolveu decisão relevante, registre um [ADR](../arquitetura/decisoes/index.md).

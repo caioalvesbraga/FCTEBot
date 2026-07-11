@@ -34,5 +34,5 @@ viva: ao resolver um item, remova-o e registre no CHANGELOG.
 | 10 | **`MAX_TOKENS` padrão baixo (300)** no `.env.example` | Respostas truncadas se copiado sem ajuste | Elevar o padrão para ~2048 |
 
 > Cada item resolvido merece uma nota no
-> [CHANGELOG](https://github.com/SEU_USUARIO/FCTEBot/blob/main/CHANGELOG.md) e,
+> [CHANGELOG](https://github.com/caioalvesbraga/FCTEBot/blob/main/CHANGELOG.md) e,
 > quando for decisão arquitetural, um [ADR](../arquitetura/decisoes/index.md).

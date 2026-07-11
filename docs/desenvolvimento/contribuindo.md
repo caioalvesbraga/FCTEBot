@@ -1,7 +1,7 @@
 # Contribuindo
 
 Guia para quem for evoluir o FCTEBot. Veja também o
-[`CONTRIBUTING.md`](https://github.com/SEU_USUARIO/FCTEBot/blob/main/CONTRIBUTING.md)
+[`CONTRIBUTING.md`](https://github.com/caioalvesbraga/FCTEBot/blob/main/CONTRIBUTING.md)
 na raiz.
 
 ## Fluxo de trabalho (Git)

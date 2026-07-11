@@ -11,7 +11,7 @@
 
 ## Visão Geral
 
-O FCTEBot v2.0 é um chatbot educacional para estudantes da FCTE/UnB que responde dúvidas acadêmicas usando **Retrieval-Augmented Generation (RAG)** com infraestrutura completamente local.
+O FCTEBot v2.0 é um assistente virtual educacional para estudantes da FCTE/UnB que responde dúvidas acadêmicas usando **Retrieval-Augmented Generation (RAG)** com infraestrutura completamente local. A **interface oficial é uma aplicação web em Vue 3**; um bot do Telegram é suportado como canal opcional.
 
 ### Comparação com o Protótipo Original
 
@@ -34,7 +34,7 @@ O FCTEBot v2.0 é um chatbot educacional para estudantes da FCTE/UnB que respond
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  Camada 1: Interface       Telegram Bot                  │
+│  Camada 1: Interface       App Web (Vue 3) + Telegram*   │
 ├─────────────────────────────────────────────────────────┤
 │  Camada 2: API Gateway     FastAPI + Rate Limiting       │
 ├─────────────────────────────────────────────────────────┤
@@ -47,6 +47,9 @@ O FCTEBot v2.0 é um chatbot educacional para estudantes da FCTE/UnB que respond
 │  Camada 6: Monitoramento   Prometheus + Grafana          │
 └─────────────────────────────────────────────────────────┘
 ```
+
+> A **interface oficial** do FCTEBot v2 é a **aplicação web em Vue 3**. O bot do
+> Telegram (\*) é suportado pelo backend como **canal opcional**.
 
 ### Decisões Arquiteturais (desvios do TCC1)
 
@@ -118,13 +121,17 @@ curl -X POST http://localhost:8000/query \
   -d '{"query": "Qual o prazo para trancamento parcial?"}'
 ```
 
-### 6. Dashboards
+### 6. Acessar a aplicação
 
 | Serviço | URL | Credenciais |
 |---------|-----|-------------|
+| **App Web (interface oficial)** | http://localhost:3000 | — |
 | API Docs | http://localhost:8000/docs | — |
-| Grafana | http://localhost:3000 | admin / fctebot2025 |
+| Grafana | http://localhost:3001 | admin / fctebot2025 |
 | Prometheus | http://localhost:9090 | — |
+
+A interface principal do FCTEBot é a **aplicação web em Vue 3**, acessível em
+`http://localhost:3000`. Ela conversa com o backend pela rota `POST /query`.
 
 ---
 
@@ -149,6 +156,13 @@ uvicorn src.main:app --reload --port 8000
 
 ```
 FCTEBot/
+├── frontend/                   # Interface oficial: SPA Vue 3 + Vite + Pinia (Nginx em prod)
+│   ├── src/
+│   │   ├── components/         # ChatWindow, ChatInput, ChatMessage, Sidebar, Header/Footer
+│   │   ├── stores/             # Estado (sessões, tema) com Pinia
+│   │   ├── composables/        # useApi.ts (cliente HTTP para /query e /health)
+│   │   └── types/              # Contratos com a API
+│   └── nginx.conf              # Proxy /query e /health para o backend
 ├── src/
 │   ├── config.py               # Configuração centralizada (Pydantic Settings)
 │   ├── main.py                 # Entry point FastAPI

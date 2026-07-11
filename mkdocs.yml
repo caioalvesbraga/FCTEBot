@@ -6,7 +6,7 @@ site_author: Caio Felipe Alves Braga
 copyright: Copyright &copy; 2026 Caio Felipe Alves Braga — FCTE/UnB
 
 # Ajuste para o seu repositório (habilita o botão "editar esta página")
-repo_url: https://github.com/SEU_USUARIO/FCTEBot
+repo_url: https://github.com/caioalvesbraga/FCTEBot
 repo_name: FCTEBot
 edit_uri: edit/main/docs/
 

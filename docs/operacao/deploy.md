@@ -10,7 +10,7 @@ de latência e custo.
 | **Local (dev)** | CPU | variável | Grátis | `docker-compose.yml` |
 
 O guia detalhado de Oracle Cloud (com HTTPS via Caddy) está em
-[`DEPLOY.md`](https://github.com/SEU_USUARIO/FCTEBot/blob/main/DEPLOY.md) na raiz
+[`DEPLOY.md`](https://github.com/caioalvesbraga/FCTEBot/blob/main/DEPLOY.md) na raiz
 do repositório.
 
 ## GPU cloud (Vast.ai) — resumo

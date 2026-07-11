@@ -26,8 +26,10 @@ flowchart TB
     bot -->|ingestão automática| unb
 ```
 
-O sistema atende **estudantes** (via Telegram e web) e é mantido por um
-**mantenedor** (dev/coordenação). Depende do **Ollama** para geração local, com
+O sistema atende **estudantes** por meio da **aplicação web (Vue 3)** — a
+interface oficial do FCTEBot v2 — e é mantido por um **mantenedor**
+(dev/coordenação). Um **bot do Telegram** é suportado pelo backend como **canal
+opcional**. Depende do **Ollama** para geração local, com
 *fallback* opcional para o **Gemini**, e coleta conteúdo de **fontes oficiais da
 UnB** para manter a base atualizada.
 
@@ -43,7 +45,7 @@ flowchart TB
 
     subgraph app_tier[Aplicação]
         front[Frontend Vue 3<br/>Nginx]
-        api[Backend FastAPI<br/>Pipeline RAG + Bot Telegram]
+        api[Backend FastAPI<br/>API REST + Pipeline RAG]
     end
 
     subgraph data_tier[Dados e modelos]
@@ -69,7 +71,7 @@ flowchart TB
 | Contêiner | Tecnologia | Porta (dev) | Responsabilidade |
 |---|---|---|---|
 | `fctebot-frontend` | Vue 3 + Nginx | 3000 | SPA de chat; proxy `/query` e `/health` para o backend |
-| `fctebot-app` | FastAPI + Uvicorn | 8000 | API REST, pipeline RAG, bot Telegram, métricas |
+| `fctebot-app` | FastAPI + Uvicorn | 8000 | API REST, pipeline RAG, métricas (bot Telegram opcional) |
 | `fctebot-ollama` | Ollama | 11434 | Servidor de LLM local (ex.: `qwen2.5:7b`) |
 | `fctebot-redis` | Redis 7 | 6379 | Cache multinível de respostas |
 | `fctebot-prometheus` | Prometheus | 9090 | Coleta de métricas |
@@ -116,7 +118,7 @@ e o fluxo de uma consulta em [Pipeline RAG](pipeline-rag.md).
 
 ## Camadas (resumo lógico)
 
-1. **Interface** — Telegram e frontend web.
+1. **Interface** — aplicação web em Vue 3 (canal oficial); bot do Telegram opcional.
 2. **API** — FastAPI (`/query`, `/health`, `/webhook`, `/ingest`, `/cache`).
 3. **Cache** — Redis L1 (correspondência exata) + L2 (similaridade semântica).
 4. **Recuperação** — híbrida (TF-IDF esparso + FAISS denso), fundida por RRF.
