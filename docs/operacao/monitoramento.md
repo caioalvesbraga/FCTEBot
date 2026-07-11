@@ -15,6 +15,39 @@ provisionados para o **Grafana**.
 Acesso em desenvolvimento: Grafana em `http://localhost:3001`
 (admin / `fctebot2025`), Prometheus em `http://localhost:9090`.
 
+## Acessar Prometheus e Grafana no Vast.ai (GPU)
+
+No Vast há duas pegadinhas:
+
+1. O `vast-setup.sh` sobe apenas `app ollama redis frontend` — **Prometheus e
+   Grafana não são iniciados por padrão**. Suba-os explicitamente:
+
+    ```bash
+    ssh -p <PORT> -i ~/.ssh/<chave> root@<HOST> \
+      "cd /root/FCTEBot && docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d prometheus grafana"
+    ```
+
+2. As portas 9090/3001 normalmente **não são públicas** no Vast. Acesse via
+   **túnel SSH** (deixe o terminal aberto — com `-N` ele fica "parado", o que é
+   o comportamento correto):
+
+    ```bash
+    ssh -p <PORT> -i ~/.ssh/<chave> -N -L 3001:localhost:3001 -L 9090:localhost:9090 root@<HOST>
+    ```
+
+    Depois, no navegador: Grafana em `http://localhost:3001`, Prometheus em
+    `http://localhost:9090`. Se a porta local estiver ocupada, troque o lado
+    esquerdo do `-L` (ex.: `-L 3005:localhost:3001`).
+
+!!! tip "Senha do Grafana não funciona"
+    `GF_SECURITY_ADMIN_PASSWORD` só é aplicada na **primeira** criação do volume
+    `grafana-data`. Se a senha `fctebot2025` não entrar, resete:
+
+    ```bash
+    ssh -p <PORT> -i ~/.ssh/<chave> root@<HOST> \
+      "docker exec fctebot-grafana grafana-cli admin reset-admin-password fctebot2025"
+    ```
+
 ## Métricas principais
 
 > **TODO:** confirmar os nomes exatos em `src/monitoring/metrics.py` e completar

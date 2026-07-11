@@ -17,6 +17,12 @@ Falhas comuns e como resolvê-las. Para procedimentos de rotina, veja o
 3. **Ingestão não executada** → `docker exec fctebot-app python scripts/ingest.py --force`.
 4. **Arquivo não chegou ao servidor** → confirme:
    `docker exec fctebot-app grep -n "texto novo" "/app/Infos Adms UnB/arquivo.md"`.
+5. **Correção de código (`src/`) não aplicada** → se o arquivo em disco já está
+   correto mas o `/query` responde o antigo com `"cache_hit": "none"`, a **imagem
+   Docker está velha**. O `src/` é embutido na imagem, então `--force-recreate`
+   não basta: reconstrua com
+   `docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d --build app`.
+   Ver [Runbook → Atualizar o código](runbook.md#atualizar-o-codigo-src-exige-build).
 
 ## `/health` retorna `degraded` ou `error`
 

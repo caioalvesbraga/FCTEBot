@@ -73,6 +73,37 @@ curl -s -X POST http://localhost:8000/query \
   -d '{"query":"sua pergunta de teste"}' | python3 -m json.tool
 ```
 
+## Atualizar o código (`src/`) — exige `--build`
+
+!!! danger "Base × código: procedimentos diferentes"
+    - **Base de conhecimento (`Infos Adms UnB/`)** é um **volume montado** → basta
+      `ingest --force` + `--force-recreate app` + `FLUSHALL`.
+    - **Código (`src/`)** é **embutido na imagem Docker** no build (não é volume).
+      Logo, `--force-recreate` **não** atualiza o código — ele reusa a mesma
+      imagem. É preciso **reconstruir a imagem com `--build`**.
+
+Enviar o código e reconstruir:
+
+```bash
+# 1. enviar o src/ atualizado
+scp -P <PORT> -i ~/.ssh/<chave> -r \
+  "/mnt/c/Users/caiob/Downloads/TCC/FCTEBot/src" \
+  root@<HOST>:/root/FCTEBot/
+
+# 2. reconstruir a imagem do app (COPY src/ pega o código novo) + limpar cache
+ssh -p <PORT> -i ~/.ssh/<chave> root@<HOST> "
+  cd /root/FCTEBot &&
+  docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d --build app &&
+  docker exec fctebot-redis redis-cli FLUSHALL
+"
+```
+
+!!! tip "Diagnóstico do sintoma clássico"
+    Se o `grep` no arquivo em disco (`/root/FCTEBot/src/...`) mostra o código
+    **correto**, mas o `/query` ainda responde o **antigo** com
+    `"cache_hit": "none"`, então a **imagem está velha** — rode `up -d --build app`.
+    Se `"cache_hit"` for `l1`/`l2`, é cache → `FLUSHALL`.
+
 ## Gerenciar o modelo do Ollama
 
 ```bash

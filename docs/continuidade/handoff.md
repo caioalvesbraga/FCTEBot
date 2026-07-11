@@ -41,12 +41,6 @@ suportado como canal opcional. Produto de TCC2 de Engenharia de Software.
   sem Gemini.
 - **Não invente siglas:** defina-as na base (ver [Glossário](../base-conhecimento/glossario.md)).
 
-## Acessos que você vai precisar (preencher)
-
-> **TODO:** registrar (em local seguro, fora do Git) — repositório, credenciais
-> do provedor GPU, token do bot (@BotFather), chave Gemini (se usada), acesso ao
-> Grafana e ao domínio/DNS.
-
 ## Contatos
 
 - Autor: Caio Felipe Alves Braga.
