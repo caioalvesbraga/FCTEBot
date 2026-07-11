@@ -256,9 +256,39 @@ TELEGRAM_WEBHOOK_URL=https://seu-dominio.com.br
 
 ---
 
+## Créditos e Fork
+
+Este repositório é um **fork** do FCTEBot original, no contexto da FCTE/UnB.
+O trabalho aqui documentado (a arquitetura **v2**) parte de um protótipo anterior
+(**v1**, tratado como *baseline* ao longo desta documentação) e o evolui.
+
+- **Projeto original (upstream):** [CedisUnB/FCTEBot](https://github.com/CedisUnB/FCTEBot)
+- **Autoria original (v1 / protótipo baseline):** Giulia Alcântara ([@alcantaragiubs](https://github.com/alcantaragiubs)) e Breno Henrique ([@breno-hs](https://github.com/breno-hs))
+
+As contribuições deste fork — arquitetura RAG **local-first** (recuperação
+híbrida TF-IDF + FAISS + RRF, re-ranking, cache multinível, geração via Ollama
+com fallback Gemini), frontend Vue 3, observabilidade e documentação — são de
+autoria de **Caio Felipe Alves Braga**, como parte do TCC2 de Engenharia de
+Software (UnB/FCTE, 2026), sob orientação do **Prof. Dr. Fabiano A. Soares**.
+
+Para manter o vínculo de proveniência com o projeto original, registre o
+`upstream` no seu clone:
+
+```bash
+git remote add upstream https://github.com/CedisUnB/FCTEBot.git
+git remote -v
+```
+
+---
+
 ## Licença
 
 MIT License — Uso acadêmico e pesquisa sem restrições.
+
+> **Fork:** este projeto deriva do FCTEBot original (ver [Créditos e Fork](#créditos-e-fork)).
+> Os direitos autorais do código original permanecem com seus respectivos
+> autores; as modificações da v2 são de Caio Felipe Alves Braga. Ao redistribuir,
+> preserve os avisos de copyright originais e o deste fork.
 
 Modelos utilizados:
 - **Qwen2.5** — Apache 2.0
