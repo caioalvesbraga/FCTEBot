@@ -1,0 +1,85 @@
+/* ============================================================
+   FCTEBot Design System
+   Baseado na identidade visual de software.unb.br
+   Fonte: Inter Tight (mesma do site oficial)
+   ============================================================ */
+
+/* ── Tokens — Light mode ──────────────────────────────────── */
+:root {
+  /* Paleta oficial UnB/FCTE */
+  --color-navy:           #003366;   /* azul marinha — header, avatares */
+  --color-primary:        #063871;   /* azul primário — links, bordas ativas */
+  --color-primary-hover:  #004080;   /* hover de botões */
+  --color-primary-subtle: #e8f0fb;   /* fundo sutil de hover */
+
+  /* Superfícies */
+  --color-bg:             #f4f6f9;
+  --color-surface:        #ffffff;
+  --color-surface-alt:    #f0f2f5;
+
+  /* Texto */
+  --color-text:           #1a1d23;
+  --color-text-secondary: #5d5d5d;
+  --color-placeholder:    #aab0ba;
+  --color-link:           #063871;
+
+  /* Bordas */
+  --color-border:         #dde2e9;
+
+  /* Gov bar */
+  --color-govbar:         #1c2b39;
+  --color-govbar-text:    rgba(255,255,255,0.7);
+  --color-govbar-link:    rgba(255,255,255,0.55);
+
+  /* Estados de erro */
+  --color-error-bg:       #fff5f5;
+  --color-error-text:     #991b1b;
+
+  /* Tipografia */
+  --font: 'Inter Tight', system-ui, -apple-system, sans-serif;
+  --radius: 8px;
+}
+
+/* ── Tokens — Dark mode ───────────────────────────────────── */
+html.dark {
+  --color-navy:           #4a90d9;
+  --color-primary:        #5b9bd5;
+  --color-primary-hover:  #6aaae0;
+  --color-primary-subtle: #1a2840;
+
+  --color-bg:             #0f1117;
+  --color-surface:        #1a1d23;
+  --color-surface-alt:    #222630;
+
+  --color-text:           #e8eaf0;
+  --color-text-secondary: #8b91a0;
+  --color-placeholder:    #4a5060;
+  --color-link:           #5b9bd5;
+
+  --color-border:         #2e333d;
+
+  --color-govbar:         #111519;
+  --color-govbar-text:    rgba(255,255,255,0.5);
+  --color-govbar-link:    rgba(255,255,255,0.35);
+
+  --color-error-bg:       #1f1010;
+  --color-error-text:     #fca5a5;
+}
+
+/* ── Reset ────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #app {
+  height: 100%;
+  font-family: var(--font);
+  font-size: 15px;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar global */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}

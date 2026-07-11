@@ -1,0 +1,30 @@
+# Override para deploy em GPU cloud (RunPod, Vast VM, Lambda, etc.)
+#
+# Uso:
+#   cp .env.cloud .env   # ou ajuste paths
+#   docker compose -f docker-compose.yml -f docker-compose.cloud.yml up -d --build
+
+services:
+  app:
+    environment:
+      - EMBEDDING_DEVICE=cuda
+      - HF_HUB_OFFLINE=1
+      - TRANSFORMERS_OFFLINE=1
+    volumes:
+      - ./models:/app/models:ro
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

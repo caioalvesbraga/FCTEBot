@@ -1,0 +1,122 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# FCTEBot — Produção (Oracle Cloud Free Tier / qualquer VPS CPU)
+#
+# Serviços: Caddy (HTTPS) + Frontend + API + Ollama + Redis
+# Sem Grafana/Prometheus expostos publicamente (foco nos testes com alunos)
+#
+# Uso:
+#   export DOMAIN=fctebot.example.com    # seu domínio ou IP
+#   docker compose -f docker-compose.prod.yml up -d --build
+# ──────────────────────────────────────────────────────────────────────────────
+
+version: "3.9"
+
+services:
+
+  # ── Caddy — Reverse Proxy + HTTPS automático ──────────────────────────────
+  caddy:
+    image: caddy:2-alpine
+    container_name: fctebot-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      - DOMAIN=${DOMAIN:-localhost}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      - fctebot-net
+    depends_on:
+      - frontend
+
+  # ── Frontend Vue 3 ────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: production
+    container_name: fctebot-frontend
+    restart: unless-stopped
+    networks:
+      - fctebot-net
+    depends_on:
+      app:
+        condition: service_healthy
+
+  # ── API FastAPI ───────────────────────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fctebot-app
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - REDIS_URL=redis://redis:6379/0
+      - EMBEDDING_DEVICE=cpu
+    volumes:
+      - ./Infos Adms UnB:/app/Infos Adms UnB:rw
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      redis:
+        condition: service_healthy
+      ollama:
+        condition: service_started
+    networks:
+      - fctebot-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+
+  # ── Ollama — LLM local (CPU) ──────────────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: fctebot-ollama
+    restart: unless-stopped
+    environment:
+      - OLLAMA_KEEP_ALIVE=30m
+      - OLLAMA_NUM_PARALLEL=1
+    volumes:
+      - ollama-models:/root/.ollama
+    networks:
+      - fctebot-net
+
+  # ── Redis — Cache ─────────────────────────────────────────────────────────
+  redis:
+    image: redis:7.4-alpine
+    container_name: fctebot-redis
+    restart: unless-stopped
+    command: >
+      redis-server
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+      --save 3600 1
+      --appendonly yes
+    volumes:
+      - redis-data:/data
+    networks:
+      - fctebot-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  ollama-models:
+  redis-data:
+  caddy-data:
+  caddy-config:
+
+networks:
+  fctebot-net:
+    driver: bridge

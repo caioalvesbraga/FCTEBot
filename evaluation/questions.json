@@ -1,0 +1,210 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "total": 25,
+    "categories": 14,
+    "description": "Dataset de avaliação do FCTEBot — 25 perguntas representativas das categorias de dúvidas da FCTE/UnB"
+  },
+  "questions": [
+    {
+      "id": "Q01",
+      "category": "matricula",
+      "complexity": "basica",
+      "scope": "geral",
+      "question": "Qual é o prazo para fazer o ajuste de matrícula?",
+      "expected_topics": ["prazo", "ajuste de matrícula", "semestre"]
+    },
+    {
+      "id": "Q02",
+      "category": "matricula",
+      "complexity": "intermediaria",
+      "scope": "geral",
+      "question": "Como funciona a matrícula em lote na UnB?",
+      "expected_topics": ["matrícula em lote", "prioridade", "turma", "período"]
+    },
+    {
+      "id": "Q03",
+      "category": "estagio",
+      "complexity": "intermediaria",
+      "scope": "geral",
+      "question": "Quais documentos são necessários para cadastrar um estágio obrigatório?",
+      "expected_topics": ["estágio obrigatório", "documentos", "TCE", "supervisor"]
+    },
+    {
+      "id": "Q04",
+      "category": "estagio",
+      "complexity": "avancada",
+      "scope": "especifico",
+      "question": "Qual é o processo passo-a-passo para validar um estágio não-obrigatório?",
+      "expected_topics": ["estágio não-obrigatório", "validação", "horas", "documentação"]
+    },
+    {
+      "id": "Q05",
+      "category": "horas_complementares",
+      "complexity": "basica",
+      "scope": "geral",
+      "question": "Quantas horas complementares são necessárias para se formar em Engenharia de Software?",
+      "expected_topics": ["horas complementares", "quantidade", "Engenharia de Software", "currículo"]
+    },
+    {
+      "id": "Q06",
+      "category": "horas_complementares",
+      "complexity": "intermediaria",
+      "scope": "geral",
+      "question": "Quais atividades contam como horas complementares?",
+      "expected_topics": ["horas complementares", "atividades", "categorias", "validação"]
+    },
+    {
+      "id": "Q07",
+      "category": "trancamento",
+      "complexity": "basica",
+      "scope": "geral",
+      "question": "Qual a diferença entre trancamento parcial e trancamento total?",
+      "expected_topics": ["trancamento parcial", "trancamento total", "diferença"]
+    },
+    {
+      "id": "Q08",
+      "category": "trancamento",
+      "complexity": "intermediaria",
+      "scope": "geral",
+      "question": "Quais são as consequências do trancamento total para a vida acadêmica?",
+      "expected_topics": ["trancamento total", "consequências", "prazo", "semestres"]
+    },
+    {
+      "id": "Q09",
+      "category": "assistencia_estudantil",
+      "complexity": "basica",
+      "scope": "geral",
+      "question": "Quais bolsas e auxílios estão disponíveis para estudantes de baixa renda na UnB?",
+      "expected_topics": ["bolsa permanência", "auxílio", "renda", "DAC"]
+    },
+    {
+      "id": "Q10",
+      "category": "assistencia_estudantil",
+      "complexity": "intermediaria",
+      "scope": "geral",
+      "question": "Como me candidatar ao Programa de Assistência Estudantil?",
+      "expected_topics": ["assistência estudantil", "candidatura", "documentos", "prazo"]
+    },
+    {
+      "id": "Q11",
+      "category": "desligamento",
+      "complexity": "avancada",
+      "scope": "geral",
+      "question": "Quais situações podem levar ao desligamento de um estudante da UnB?",
+      "expected_topics": ["desligamento", "reprovação", "prazo máximo", "condições"]
+    },
+    {
+      "id": "Q12",
+      "category": "desligamento",
+      "complexity": "intermediaria",
+      "scope": "geral",
+      "question": "Após o desligamento, é possível retornar ao curso?",
+      "expected_topics": ["desligamento", "retorno", "reingresso", "condições"]
+    },
+    {
+      "id": "Q13",
+      "category": "contatos",
+      "complexity": "basica",
+      "scope": "geral",
+      "question": "Qual o e-mail e telefone da secretaria acadêmica da FCTE?",
+      "expected_topics": ["secretaria", "e-mail", "telefone", "contato"]
+    },
+    {
+      "id": "Q14",
+      "category": "contatos",
+      "complexity": "basica",
+      "scope": "especifico",
+      "question": "Como entrar em contato com a coordenação de Engenharia Aeroespacial?",
+      "expected_topics": ["coordenação", "Engenharia Aeroespacial", "contato"]
+    },
+    {
+      "id": "Q15",
+      "category": "calendario",
+      "complexity": "basica",
+      "scope": "geral",
+      "question": "Quando começa e termina o semestre letivo?",
+      "expected_topics": ["calendário", "início", "término", "semestre"]
+    },
+    {
+      "id": "Q16",
+      "category": "abono_falta",
+      "complexity": "intermediaria",
+      "scope": "geral",
+      "question": "Em quais situações um estudante tem direito ao abono de falta?",
+      "expected_topics": ["abono de falta", "situações", "documentação", "prazo"]
+    },
+    {
+      "id": "Q17",
+      "category": "estrutura_curricular",
+      "complexity": "intermediaria",
+      "scope": "especifico",
+      "question": "Quais são as disciplinas obrigatórias do curso de Engenharia de Software?",
+      "expected_topics": ["Engenharia de Software", "disciplinas obrigatórias", "currículo"]
+    },
+    {
+      "id": "Q18",
+      "category": "estrutura_curricular",
+      "complexity": "basica",
+      "scope": "geral",
+      "question": "O que é e como funciona a cadeia de seletividade?",
+      "expected_topics": ["cadeia de seletividade", "disciplinas", "pré-requisito"]
+    },
+    {
+      "id": "Q19",
+      "category": "tcc",
+      "complexity": "intermediaria",
+      "scope": "geral",
+      "question": "Quais são os requisitos para começar o TCC na FCTE?",
+      "expected_topics": ["TCC", "requisitos", "créditos", "orientador"]
+    },
+    {
+      "id": "Q20",
+      "category": "diploma",
+      "complexity": "avancada",
+      "scope": "geral",
+      "question": "Qual é o processo para solicitar o diploma após a colação de grau?",
+      "expected_topics": ["diploma", "colação de grau", "processo", "documentos", "prazo"]
+    },
+    {
+      "id": "Q21",
+      "category": "aproveitamento",
+      "complexity": "intermediaria",
+      "scope": "geral",
+      "question": "Como funciona o aproveitamento de disciplinas cursadas em outra instituição?",
+      "expected_topics": ["aproveitamento", "disciplinas", "outra instituição", "processo"]
+    },
+    {
+      "id": "Q22",
+      "category": "matricula",
+      "complexity": "avancada",
+      "scope": "geral",
+      "question": "Como solicitar matrícula em disciplina com pré-requisito não cumprido?",
+      "expected_topics": ["pré-requisito", "matrícula", "solicitação", "coordenação"]
+    },
+    {
+      "id": "Q23",
+      "category": "horas_complementares",
+      "complexity": "avancada",
+      "scope": "geral",
+      "question": "Qual é o processo passo-a-passo para submeter horas complementares no SIGAA?",
+      "expected_topics": ["horas complementares", "SIGAA", "processo", "submissão"]
+    },
+    {
+      "id": "Q24",
+      "category": "estagio",
+      "complexity": "basica",
+      "scope": "geral",
+      "question": "É obrigatório ter seguro de acidentes pessoais para realizar estágio?",
+      "expected_topics": ["estágio", "seguro", "obrigatório"]
+    },
+    {
+      "id": "Q25",
+      "category": "assistencia_estudantil",
+      "complexity": "basica",
+      "scope": "geral",
+      "question": "Onde fica o Restaurante Universitário (RU) do campus Gama?",
+      "expected_topics": ["Restaurante Universitário", "RU", "Gama", "localização"]
+    }
+  ]
+}

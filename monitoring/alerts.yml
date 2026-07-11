@@ -1,0 +1,53 @@
+groups:
+  - name: fctebot_alerts
+    interval: 1m
+    rules:
+      # RNF001: Latência P95 ≤ 5s
+      - alert: HighLatencyP95
+        expr: histogram_quantile(0.95, rate(fctebot_query_latency_ms_bucket[5m])) > 5000
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "FCTEBot: Latência P95 acima de 5s"
+          description: "P95={{ $value | humanize }}ms. Meta: ≤5000ms (RNF001)"
+
+      # Taxa de erro > 5%
+      - alert: HighErrorRate
+        expr: rate(fctebot_query_total{mode="error"}[5m]) / rate(fctebot_query_total[5m]) > 0.05
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "FCTEBot: Taxa de erro > 5%"
+          description: "Taxa de erro: {{ $value | humanizePercentage }}"
+
+      # Cache L1 hit rate < 10%
+      - alert: LowCacheHitRate
+        expr: rate(fctebot_cache_hits_total{level="l1"}[10m]) / rate(fctebot_query_total[10m]) < 0.10
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Cache L1 hit rate baixo"
+          description: "Hit rate: {{ $value | humanizePercentage }}. Revisar estratégia de cache."
+
+      # Fallback rate > 50%
+      - alert: HighFallbackRate
+        expr: rate(fctebot_fallback_total[5m]) / rate(fctebot_query_total[5m]) > 0.50
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "FCTEBot: Fallback rate > 50%"
+          description: "Ollama pode estar com baixa qualidade. Rate: {{ $value | humanizePercentage }}"
+
+      # Ollama com muitos erros
+      - alert: OllamaHighErrors
+        expr: rate(fctebot_ollama_errors_total[5m]) > 2
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "FCTEBot: Ollama com erros frequentes"
+          description: "{{ $value }} erros/min. Circuit breaker pode ter aberto."

@@ -1,0 +1,154 @@
+version: "3.9"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# FCTEBot — Docker Compose
+# Orquestra todos os serviços da arquitetura otimizada
+# ──────────────────────────────────────────────────────────────────────────────
+
+services:
+
+  # ── Aplicação Principal (FastAPI + Bot Telegram) ───────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fctebot-app
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    volumes:
+      # :rw permite que o entrypoint escreva os .md baixados na primeira subida
+      # e que update_calendario.py / update_normativos.py atualizem sem rebuild
+      - ./Infos Adms UnB:/app/Infos Adms UnB:rw
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      redis:
+        condition: service_healthy
+      ollama:
+        condition: service_started
+    networks:
+      - fctebot-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── Ollama — Servidor de LLM Local ────────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: fctebot-ollama
+    restart: unless-stopped
+    environment:
+      - OLLAMA_KEEP_ALIVE=30m
+      - OLLAMA_NUM_PARALLEL=1
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    networks:
+      - fctebot-net
+    # Para usar GPU NVIDIA: descomente as linhas abaixo
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+  # ── Frontend Vue 3 — Interface Web ────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: production
+    container_name: fctebot-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      app:
+        condition: service_healthy
+    networks:
+      - fctebot-net
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # ── Redis — Cache Multinível ───────────────────────────────────────────────
+  redis:
+    image: redis:7.4-alpine
+    container_name: fctebot-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: >
+      redis-server
+      --maxmemory 512mb
+      --maxmemory-policy allkeys-lru
+      --save 3600 1
+      --appendonly yes
+    volumes:
+      - redis-data:/data
+    networks:
+      - fctebot-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Prometheus — Coleta de Métricas ───────────────────────────────────────
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    container_name: fctebot-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=30d"
+      - "--web.enable-lifecycle"
+    networks:
+      - fctebot-net
+
+  # ── Grafana — Dashboard de Observabilidade ─────────────────────────────────
+  grafana:
+    image: grafana/grafana:11.3.1
+    container_name: fctebot-grafana
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=fctebot2025
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      - prometheus
+    networks:
+      - fctebot-net
+
+volumes:
+  ollama-models:
+  redis-data:
+  prometheus-data:
+  grafana-data:
+
+networks:
+  fctebot-net:
+    driver: bridge

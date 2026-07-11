@@ -1,0 +1,27 @@
+# Override para GPU NVIDIA (RunPod, servidor local com GPU, etc.)
+#
+# Uso:
+#   docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d --build
+#
+# Requer: nvidia-container-toolkit instalado no host
+
+services:
+  app:
+    environment:
+      - EMBEDDING_DEVICE=cuda
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

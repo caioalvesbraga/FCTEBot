@@ -1,0 +1,32 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# FCTEBot — Caddyfile
+#
+# Caddy obtém certificado TLS automaticamente via Let's Encrypt.
+# Substitua {$DOMAIN} pelo seu domínio real no .env (variável DOMAIN).
+#
+# Se usar IP público sem domínio, substitua {$DOMAIN} por http:// e porta:
+#   :80 { ... }   ← sem HTTPS
+# ──────────────────────────────────────────────────────────────────────────────
+
+{$DOMAIN} {
+
+    # Compressão
+    encode gzip
+
+    # Logs
+    log {
+        output file /var/log/caddy/access.log {
+            roll_size 10mb
+            roll_keep 5
+        }
+    }
+
+    # Todo o tráfego vai para o frontend (nginx),
+    # que já faz proxy de /query e /health para o app internamente.
+    reverse_proxy frontend:80 {
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+}

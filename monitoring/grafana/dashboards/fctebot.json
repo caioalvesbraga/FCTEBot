@@ -1,0 +1,181 @@
+{
+  "title": "FCTEBot — Observabilidade",
+  "uid": "fctebot-main",
+  "version": 1,
+  "refresh": "30s",
+  "time": { "from": "now-1h", "to": "now" },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Latência P50 / P95 / P99",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.50, rate(fctebot_query_latency_ms_bucket[5m]))",
+          "legendFormat": "P50"
+        },
+        {
+          "expr": "histogram_quantile(0.95, rate(fctebot_query_latency_ms_bucket[5m]))",
+          "legendFormat": "P95"
+        },
+        {
+          "expr": "histogram_quantile(0.99, rate(fctebot_query_latency_ms_bucket[5m]))",
+          "legendFormat": "P99"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 3000 },
+              { "color": "red", "value": 5000 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Consultas por Modo (req/min)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "targets": [
+        {
+          "expr": "rate(fctebot_query_total{mode='local'}[1m]) * 60",
+          "legendFormat": "Local (Ollama)"
+        },
+        {
+          "expr": "rate(fctebot_query_total{mode='fallback'}[1m]) * 60",
+          "legendFormat": "Fallback (Gemini)"
+        },
+        {
+          "expr": "rate(fctebot_query_total{mode='cached'}[1m]) * 60",
+          "legendFormat": "Cache Hit"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Cache Hit Rate",
+      "type": "gauge",
+      "gridPos": { "h": 6, "w": 6, "x": 0, "y": 8 },
+      "targets": [
+        {
+          "expr": "rate(fctebot_cache_hits_total[5m]) / rate(fctebot_query_total[5m]) * 100",
+          "legendFormat": "Hit Rate %"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "yellow", "value": 15 },
+              { "color": "green", "value": 40 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "Fallback Rate",
+      "type": "gauge",
+      "gridPos": { "h": 6, "w": 6, "x": 6, "y": 8 },
+      "targets": [
+        {
+          "expr": "rate(fctebot_fallback_total[5m]) / rate(fctebot_query_total[5m]) * 100",
+          "legendFormat": "Fallback %"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 20 },
+              { "color": "red", "value": 50 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "title": "Total de Chunks Indexados",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 6, "x": 12, "y": 8 },
+      "targets": [
+        {
+          "expr": "fctebot_index_chunks_total",
+          "legendFormat": "Chunks"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Erros Ollama (últimas 5min)",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 6, "x": 18, "y": 8 },
+      "targets": [
+        {
+          "expr": "increase(fctebot_ollama_errors_total[5m])",
+          "legendFormat": "Erros"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 1 },
+              { "color": "red", "value": 5 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": 7,
+      "title": "Distribuição de Confiança das Respostas",
+      "type": "histogram",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 14 },
+      "targets": [
+        {
+          "expr": "rate(fctebot_confidence_score_bucket[5m])",
+          "legendFormat": "{{le}}"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Latência por Fase do Pipeline",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 14 },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, rate(fctebot_retrieval_latency_ms_bucket[5m]))",
+          "legendFormat": "Retrieval P95"
+        },
+        {
+          "expr": "histogram_quantile(0.95, rate(fctebot_reranking_latency_ms_bucket[5m]))",
+          "legendFormat": "Re-ranking P95"
+        },
+        {
+          "expr": "histogram_quantile(0.95, rate(fctebot_generation_latency_ms_bucket[5m]))",
+          "legendFormat": "Geração P95"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "ms" } }
+    }
+  ]
+}
