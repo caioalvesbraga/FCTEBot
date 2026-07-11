@@ -1,0 +1,104 @@
+site_name: FCTEBot — Documentação
+site_description: >-
+  Assistente Virtual Educacional baseado em RAG Local-First para a
+  FCTE/UnB. Documentação técnica, de operação e de continuidade.
+site_author: Caio Felipe Alves Braga
+copyright: Copyright &copy; 2026 Caio Felipe Alves Braga — FCTE/UnB
+
+# Ajuste para o seu repositório (habilita o botão "editar esta página")
+repo_url: https://github.com/SEU_USUARIO/FCTEBot
+repo_name: FCTEBot
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: pt-BR
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - content.code.copy
+    - content.action.edit
+    - search.suggest
+    - search.highlight
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Alternar para o modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Alternar para o modo claro
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search:
+      lang: pt
+
+nav:
+  - Início: index.md
+  - Arquitetura:
+      - Visão geral: arquitetura/visao-geral.md
+      - Pipeline RAG: arquitetura/pipeline-rag.md
+      - Decisões (ADRs):
+          - Índice: arquitetura/decisoes/index.md
+          - "ADR-0001 — RAG híbrido (TF-IDF + FAISS + RRF)": arquitetura/decisoes/0001-rag-hibrido-tfidf-faiss-rrf.md
+          - "ADR-0002 — Local-first (Ollama + fallback Gemini)": arquitetura/decisoes/0002-local-first-ollama-fallback-gemini.md
+          - "ADR-0003 — Cache multinível com Redis": arquitetura/decisoes/0003-cache-multinivel-redis.md
+          - Template de ADR: arquitetura/decisoes/template.md
+  - Desenvolvimento:
+      - Setup local: desenvolvimento/setup-local.md
+      - Estrutura do código: desenvolvimento/estrutura-codigo.md
+      - Testes: desenvolvimento/testes.md
+      - Contribuindo: desenvolvimento/contribuindo.md
+  - Operação:
+      - Deploy: operacao/deploy.md
+      - Runbook: operacao/runbook.md
+      - Monitoramento: operacao/monitoramento.md
+      - Incidentes: operacao/incidentes.md
+  - Base de conhecimento:
+      - Manual: base-conhecimento/manual.md
+      - Scripts de automação: base-conhecimento/scripts-automacao.md
+      - Glossário: base-conhecimento/glossario.md
+  - Referência:
+      - API: referencia/api.md
+      - Configuração: referencia/configuracao.md
+  - Qualidade:
+      - Avaliação: qualidade/avaliacao.md
+      - Segurança e LGPD: qualidade/seguranca-lgpd.md
+  - Continuidade:
+      - Handoff: continuidade/handoff.md
+      - Roadmap: continuidade/roadmap.md
+      - Dívida técnica: continuidade/divida-tecnica.md

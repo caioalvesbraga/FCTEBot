@@ -1,0 +1,8 @@
+# Dependências para gerar a documentação (MkDocs Material)
+# Uso:
+#   pip install -r requirements-docs.txt
+#   mkdocs serve        # preview local em http://127.0.0.1:8000
+#   mkdocs build        # gera site estático em ./site
+#   mkdocs gh-deploy    # publica no GitHub Pages (branch gh-pages)
+mkdocs-material>=9.5
+pymdown-extensions>=10.7

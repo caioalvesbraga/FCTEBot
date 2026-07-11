@@ -1,0 +1,38 @@
+name: Re-indexar Base de Conhecimento
+
+# Dispara automaticamente quando documentos da knowledge_base são alterados
+on:
+  push:
+    branches: [main]
+    paths:
+      - "knowledge_base/**"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Forçar re-indexação mesmo sem mudanças"
+        required: false
+        default: "false"
+
+jobs:
+  notify-ingest:
+    name: Notificar servidor para re-ingestão
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar mudanças na knowledge_base
+        run: echo "Mudanças detectadas na knowledge_base — disparando re-ingestão"
+
+      - name: Chamar endpoint de ingestão
+        run: |
+          curl -X POST "${{ secrets.FCTEBOT_API_URL }}/ingest" \
+            -H "Authorization: Bearer ${{ secrets.FCTEBOT_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            --fail \
+            --max-time 30 \
+            || echo "Aviso: endpoint de ingestão não respondeu (verifique se o servidor está rodando)"
+
+      - name: Verificar saúde do sistema
+        run: |
+          sleep 5
+          curl -f "${{ secrets.FCTEBOT_API_URL }}/health" \
+            --max-time 10 \
+            || echo "Sistema pode estar re-indexando (aguarde alguns minutos)"
