@@ -1928,8 +1928,10 @@ arquitetural no estilo <strong>C4</strong> (Contexto → Contêineres → Compon
     bot --&gt;|gera resposta| ollama
     bot -.-&gt;|fallback| gemini
     bot --&gt;|ingestão automática| unb</code></pre>
-<p>O sistema atende <strong>estudantes</strong> (via Telegram e web) e é mantido por um
-<strong>mantenedor</strong> (dev/coordenação). Depende do <strong>Ollama</strong> para geração local, com
+<p>O sistema atende <strong>estudantes</strong> por meio da <strong>aplicação web (Vue 3)</strong> — a
+interface oficial do FCTEBot v2 — e é mantido por um <strong>mantenedor</strong>
+(dev/coordenação). Um <strong>bot do Telegram</strong> é suportado pelo backend como <strong>canal
+opcional</strong>. Depende do <strong>Ollama</strong> para geração local, com
 <em>fallback</em> opcional para o <strong>Gemini</strong>, e coleta conteúdo de <strong>fontes oficiais da
 UnB</strong> para manter a base atualizada.</p>
 <h2 id="nivel-2-conteineres">Nível 2 — Contêineres<a class="headerlink" href="#nivel-2-conteineres" title="Permanent link">&para;</a></h2>
@@ -1942,7 +1944,7 @@ UnB</strong> para manter a base atualizada.</p>
 
     subgraph app_tier[Aplicação]
         front[Frontend Vue 3&lt;br/&gt;Nginx]
-        api[Backend FastAPI&lt;br/&gt;Pipeline RAG + Bot Telegram]
+        api[Backend FastAPI&lt;br/&gt;API REST + Pipeline RAG]
     end
 
     subgraph data_tier[Dados e modelos]
@@ -1983,7 +1985,7 @@ UnB</strong> para manter a base atualizada.</p>
 <td><code>fctebot-app</code></td>
 <td>FastAPI + Uvicorn</td>
 <td>8000</td>
-<td>API REST, pipeline RAG, bot Telegram, métricas</td>
+<td>API REST, pipeline RAG, métricas (bot Telegram opcional)</td>
 </tr>
 <tr>
 <td><code>fctebot-ollama</code></td>
@@ -2053,7 +2055,7 @@ expostas via Caddy.</p>
 e o fluxo de uma consulta em <a href="../pipeline-rag/">Pipeline RAG</a>.</p>
 <h2 id="camadas-resumo-logico">Camadas (resumo lógico)<a class="headerlink" href="#camadas-resumo-logico" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Interface</strong> — Telegram e frontend web.</li>
+<li><strong>Interface</strong> — aplicação web em Vue 3 (canal oficial); bot do Telegram opcional.</li>
 <li><strong>API</strong> — FastAPI (<code>/query</code>, <code>/health</code>, <code>/webhook</code>, <code>/ingest</code>, <code>/cache</code>).</li>
 <li><strong>Cache</strong> — Redis L1 (correspondência exata) + L2 (similaridade semântica).</li>
 <li><strong>Recuperação</strong> — híbrida (TF-IDF esparso + FAISS denso), fundida por RRF.</li>

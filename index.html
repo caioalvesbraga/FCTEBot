@@ -1915,7 +1915,7 @@ decisões técnicas foram tomadas, veja os <a href="arquitetura/decisoes/">ADRs<
 <hr />
 <h2 id="visao-em-30-segundos">Visão em 30 segundos<a class="headerlink" href="#visao-em-30-segundos" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Interface:</strong> frontend web (Vue 3) e bot do Telegram.</li>
+<li><strong>Interface:</strong> aplicação web em Vue 3 (interface oficial); bot do Telegram como canal opcional.</li>
 <li><strong>Backend:</strong> FastAPI expõe <code>POST /query</code>, orquestrando o pipeline RAG.</li>
 <li><strong>Pipeline:</strong> cache (Redis) → recuperação híbrida (TF-IDF + FAISS + RRF) →
   re-ranking (cross-encoder) → geração (Ollama local, com <em>fallback</em> Gemini).</li>
@@ -1924,7 +1924,7 @@ decisões técnicas foram tomadas, veja os <a href="arquitetura/decisoes/">ADRs<
 <li><strong>Observabilidade:</strong> métricas Prometheus + dashboards Grafana.</li>
 </ul>
 <pre class="mermaid"><code>flowchart LR
-    U[Usuário] --&gt;|Telegram / Web| API[FastAPI /query]
+    U[Usuário] --&gt;|App Web Vue 3| API[FastAPI /query]
     API --&gt; P[Pipeline RAG]
     P --&gt; C[(Redis L1/L2)]
     P --&gt; R[Recuperação híbrida&lt;br/&gt;TF-IDF + FAISS + RRF]
