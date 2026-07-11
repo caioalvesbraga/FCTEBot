@@ -32,17 +32,23 @@ Caso discorde da menção que recebeu, você deverá preencher o formulário de 
 Caso a solicitação não seja atendida, você poderá interpor recurso às instâncias superiores da UnB, na seguinte ordem: colegiado do curso, conselho do instituto ou faculdade, CEG e CEPE, sempre no mesmo processo (lembre-se de anotar o número do processo SEI, esse é seu número de protocolo para acompanhar o andamento do processo).
 
 ## TRANCAMENTO DE MATRÍCULA
-Você pode solicitar o trancamento de matrícula, no todo ou em parte, das atividades acadêmicas por meio de formulário próprio, junto à SAA ou diretamente no portal do(a) discente no SIGAA. Com o trancamento, o(a) estudante não perde definitivamente o vínculo com a Universidade, esse vínculo é apenas suspenso por um período, que não conta para o tempo máximo de permanência. O trancamento deve ser solicitado dentro do prazo estabelecido em calendário acadêmico e pode ser de dois tipos: trancamento geral de matrícula (suspensão de programa) e trancamento parcial de matrícula.
+Você pode solicitar o trancamento de matrícula, no todo ou em parte, das atividades acadêmicas. Com o trancamento, o(a) estudante **não perde o vínculo** com a Universidade — esse vínculo é apenas suspenso por um período. Há dois tipos: **trancamento geral de matrícula** (suspensão de programa) e **trancamento parcial de matrícula** (trancamento de disciplina). Cada um deles possui uma via **automática** (efetivada pelo próprio estudante no SIGAA) e uma via **justificada** (feita por peticionamento de processo no SEI, mediante análise).
+
+### Diferença entre trancamento parcial e trancamento geral
+- **Trancamento parcial de matrícula:** o(a) estudante se desliga de **uma ou mais disciplinas** em que está matriculado(a), mas é **obrigado(a) a permanecer ativo(a) em ao menos uma disciplina**. Não é permitido trancar, por essa via, todas as disciplinas do semestre.
+- **Trancamento geral de matrícula:** **suspende o vínculo do(a) estudante com as atividades acadêmicas da universidade no semestre em que foi trancado**, sem perda do vínculo regular com a UnB.
 
 ## TRANCAMENTO GERAL DE MATRÍCULA
-O trancamento geral de matrícula (TGM) é a suspensão de todas as atividades pelo período de um semestre letivo. Todo(a) estudante da UnB tem direito de fazer esse trancamento duas vezes apenas (sejam consecutivas ou não), é o que chamamos de TGM automático.
+O trancamento geral de matrícula (TGM) suspende todas as atividades acadêmicas no semestre trancado, sem perda do vínculo com a Universidade. Existem duas modalidades:
 
-Outra modalidade é o TGM justificado (TGMJ) ou suspensão justificada. Nesse caso, a suspensão se dá por razão de força maior (como questões de saúde). Para solicitar a suspensão justificada é preciso apresentar documentação comprobatória. Nesse caso, não há limite para o número de trancamentos realizados. As justificativas aceitáveis são definidas pelo CEPE e podem ser encontradas em  www.deg.unb.br.
+- **TGM automático:** efetivado **pelo próprio estudante no SIGAA** (Portal do Discente > Ensino > Suspensão de Programa > Suspensão Regular). Deve ser solicitado antes de completados 75% do semestre e é concedido por até **dois semestres**, consecutivos ou não, sem impacto no IRA.
+- **TGM justificado (TGMJ):** feito por **peticionamento de processo no SEI** (análise do pedido), mediante justificativa circunstanciada e comprovantes (por exemplo, motivo de saúde). Não há limite de quantidade e também não impacta o IRA.
 
-## TRANCAMENTO PARCIAL DE MATRÍCULA 
-O trancamento parcial de matrícula pode ser solicitado quando o aluno deseja se desligar de atividades curriculares em que se encontra matriculado. Para isso, ele deve comparecer ao atendimento da Central de Atendimento ao Aluno com o formulário de solicitação de Trancamento Parcial de Disciplina (TP), até o 75º dia do semestre letivo. Vale lembrar que, após esse prazo, os trancamentos só são concedidos em casos excepcionais, tais como problemas de saúde.
+## TRANCAMENTO PARCIAL DE MATRÍCULA
+O trancamento parcial permite ao(à) estudante se desligar de uma ou mais disciplinas, mantendo obrigatoriamente a matrícula em **pelo menos uma** delas. Existem duas modalidades:
 
-O cancelamento é o trancamento parcial em caráter excepcional e justificado. Ou seja, nesse caso o TP não respeita o prazo de 75 dias e o aluno precisa apresentar um requerimento com base nos casos que são tidos como excepcionais para que seu pedido seja sequer analisado. Detalhes em www.deg.unb.br.
+- **Trancamento parcial automático (TR):** efetivado **pelo próprio estudante no SIGAA** (Ensino > Trancamento de Matrícula > Trancar), antes de completados **50%** do semestre letivo. Sem impacto no IRA.
+- **Trancamento parcial justificado (TJ):** feito por **peticionamento de processo no SEI**, em caráter excepcional e mediante justificativa (por exemplo, problemas de saúde), geralmente quando já ultrapassado o prazo do trancamento automático. O acompanhamento é feito pelo SEI. Detalhes em www.deg.unb.br.
 
 ## APROVEITAMENTO DE OUTRAS DISCIPLINAS CURSADAS EM OUTRA INSTITUIÇÃO DE ENSINO SUPERIOR
 Sim, é possível aproveitar disciplinas que você já tenha estudado em outra instituição de ensino superior. Com isso, você economiza tempo no seu curso atual e não precisa refazer disciplinas que já cursou com êxito anteriormente. Mas, atenção: esse aproveitamento de estudos depende da análise de equivalência entre as disciplinas e das normas da sua instituição de ensino atual. Por isso, é fundamental apresentar o histórico escolar e o conteúdo programático da disciplina já cursada. Com esses documentos em mãos, você pode solicitar esse tipo de aproveitamento de estudos.
@@ -63,25 +69,23 @@ Outra opção, quando o(a) estudante está prestes a se formar, é a dupla diplo
 
 ## DESLIGAMENTO
 
-O(A) estudante pode ser desligado(a) da UnB voluntariamente (quando passa em outro processo seletivo, por exemplo, ou simplesmente quando expressa seu desejo de desistir do curso) ou compulsoriamente (o que acontece quando se esgota o tempo máximo de permanência no curso e este ainda não foi concluído, ou quando não são cumpridos requisitos mínimos de desempenho acadêmico). Assim, você pode ser desligado(a) se:
+O(A) estudante pode ser desligado(a) da UnB voluntariamente (quando passa em outro processo seletivo, por exemplo, ou simplesmente quando expressa seu desejo de desistir do curso) ou compulsoriamente (o que acontece quando se esgota o tempo máximo de permanência no curso e este ainda não foi concluído). As causas atuais de desligamento compulsório são:
 
-não cursar com aprovação pelo menos quatro componentes do curso em dois semestres letivos regulares consecutivos; ou
+- **exceder o limite do tempo máximo de permanência no curso** (jubilamento); ou
+- **ser reprovado(a) três vezes em um mesmo componente curricular obrigatório**; ou
+- **abandono**: não registrar matrícula em nenhum componente por dois semestres consecutivos, sem ter realizado suspensão de programa (trancamento geral).
 
-for reprovado(a) três vezes em um mesmo componente curricular; ou
-
-não cumprir condição imposta (veja à frente o que são as condições).
-
-Além disso, caso não registre matrícula em nenhum componente por dois semestres consecutivos, sem ter realizado suspensão de programa (trancamento geral), a UnB irá considerar que você abandonou o curso e o desligamento também ocorrerá.
+> **Atenção:** a antiga regra que desligava o(a) estudante por **não cursar com aprovação um número mínimo de componentes/créditos por semestre**, bem como o desligamento por **não cumprimento de condição imposta** decorrente dessa regra, **não são mais aplicados** pela Universidade.
 
 ## RISCO DE DESLIGAMENTO E CONDIÇÃO 
 
-Você estará em risco de desligamento sempre que estiver prestes a se enquadrar em uma das situações descritas no item Desligamento. Um exemplo é quando você é reprovado(a) pela segunda vez em uma disciplina obrigatória, pois a terceira reprovação implicará no desligamento. Nesse caso, você tem uma “condição” a cumprir para sair do risco, que é cursar a disciplina com aprovação. O mesmo ocorre se você chegar perto do limite de permanência no curso e ainda tiver muitos componentes curriculares a cumprir, situação em que você estará em risco e precisará cumprir a condição de concluir o curso em determinado semestre. Porém, a depender da situação, é possível ter uma dessas condições convertida em outra. Por exemplo, pode ser exigido que você obtenha aprovação em disciplinas que somem o mínimo de créditos por semestre definido para o curso, em cada um dos dois períodos letivos subsequentes, ou, ainda, cumprir um plano de estudo elaborado por um(a) professor(a). O plano de estudo consiste de um planejamento mínimo de um ano com as disciplinas a serem cursadas com probabilidade de êxito pelo(a) discente.
+Você estará em risco de desligamento sempre que estiver prestes a se enquadrar em uma das situações descritas no item Desligamento. Um exemplo é quando você é reprovado(a) pela segunda vez em uma disciplina obrigatória, pois a terceira reprovação implicará no desligamento. Nesse caso, você tem uma “condição” a cumprir para sair do risco: cursar a disciplina com aprovação. O mesmo ocorre se você chegar perto do limite de permanência no curso e ainda tiver muitos componentes curriculares a cumprir — situação em que você precisará cumprir a condição de concluir o curso no prazo.
 
 O ideal, claro, é cuidar para não entrar em risco de desligamento. Mas se for desligado(a), você ainda terá uma chance de reestabelecer seu vínculo com a UnB por meio do processo de reintegração.
 
 ## REINTEGRAÇÃO
 
-Ao ser oficialmente comunicado(a) sobre seu desligamento, você poderá solicitar sua reintegração em um prazo máximo de até dois anos, após a formalização do desligamento. A solicitação será realizada por peticionamento eletrônico, apresentando argumentos e comprovantes que fundamentem seu pedido de reintegração. Seu processo será então analisado no sentido de se verificar as suas condições de superar as dificuldades que levaram ao desligamento. Mas fique atento(a), existem prazos que você precisa seguir rigorosamente. Veja os detalhes em www.deg.unb.br.
+Ao ser oficialmente comunicado(a) sobre seu desligamento, você poderá solicitar sua reintegração. **Não há mais um prazo determinado** para esse pedido — a solicitação pode ser feita a qualquer tempo. O que será avaliado são as **motivações e as condições do(a) estudante** de superar as dificuldades que levaram ao desligamento, e não um limite de tempo desde o desligamento. A solicitação é realizada por peticionamento eletrônico, apresentando argumentos e comprovantes que fundamentem o pedido. Veja os detalhes em www.deg.unb.br.
 
 Caso seu pedido seja indeferido, você ainda pode entrar com recurso à CEG. Mas, se seu pedido for deferido, haverá um período probatório em que você terá uma condição a cumprir para não ser novamente desligado(a). Para isso, seu curso indicará um(a) professor(a) para te ajudar quanto à estratégia a ser adotada para sua recuperação acadêmica.
 
@@ -211,6 +215,7 @@ Para conferir os editais dos programas de bolsas e auxílios do DAC acesse: www.
 - ANDIFES – Associação Nacional de Dirigentes de Instituições Federais de Ensino Superior
 - APRENDER – Plataforma de Acesso aos Ambientes Virtuais de Aprendizagem
 - CA – centro acadêmico
+- CAO – Comissão de Acompanhamento e Orientação (vinculada ao DEG/UnB; contato: caodeg@unb.br). **Não confundir com nenhuma "central de atendimento"** — esse nome não existe na UnB.
 - CEAD – Centro de Educação a Distância da UnB
 - CEG – Câmara de Ensino de Graduação
 - CEPE – Conselho de Ensino, Pesquisa e Extensão

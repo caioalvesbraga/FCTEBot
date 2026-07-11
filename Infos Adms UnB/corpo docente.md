@@ -36,12 +36,12 @@
   - Sala: Sala da Coordenação – Prédio UAC
   - E-mail coordenação: energia@unb.br
   - Atendimento: Segunda feira das 10h às 12h
-- John Lenon Cardoso Gardenghi (Coordenador do Curso de Software)
-    - E-mail de contato: john.gardenghi@unb.br
-    - Sala: 22
-    - E-mail coordenação: software@unb.br
+- Coordenação do Curso de Engenharia de Software
+    - E-mail coordenação: engsoftware@unb.br
+    - Telefone: (61) 3107-8918
+    - Sala: 22 (Prédio UAC)
     - Site coordenação: [Site](https://software.unb.br/institucional/coordenacao)
-    - Atendimento: Sexta feira das 9h às 11h30 
+    - Atendimento: Sexta-feira das 9h às 11h30 
 - Daniel Costa Araújo (Coordenador do Curso de Eletrônica)
     - E-mail de contato: daniel.c.araujo@gmail.com
     - Sala: Sala da Coordenação – Prédio UAC

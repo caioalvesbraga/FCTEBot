@@ -109,6 +109,20 @@ Este processo é específico para o período de **Matrícula Extraordinária** e
 **Dica:** Após confirmar, verifique seu histórico ou comprovante de matrícula para garantir que a vaga foi efetivamente sua.
 
 
+## **Matrícula e Rematrícula: como e onde fazer**
+
+A matrícula e a rematrícula em disciplinas são feitas **pelo próprio estudante no SIGAA** (Portal do Discente > Ensino > Matrícula On-Line), durante os períodos definidos no calendário acadêmico. Para a matrícula regular, **não é necessário comparecer presencialmente**. A **secretaria/coordenação** presta apoio **presencial** apenas em casos específicos — como a matrícula de ingressantes por Transferência ou Portador de Diploma, correção de pendências ou situações excepcionais que o sistema não resolve sozinho.
+
+A **Rematrícula** é a segunda etapa (e uma segunda chance), com o **mesmo passo a passo da Matrícula**, para solicitar turmas que ainda tenham vaga. Ela também é realizada pelo estudante no SIGAA, seguindo o caminho **Ensino > Matrícula On-Line > Realizar Matrícula**, e o sistema só processa as solicitações após o fim do prazo, considerando as prioridades.
+
+
+## **O que acontece se eu perder o prazo da matrícula ordinária?**
+
+Se você perder os períodos de **Matrícula** e **Rematrícula** (a chamada matrícula ordinária), ainda há uma última oportunidade: a **Matrícula Extraordinária**. Nela, é possível ocupar as **vagas remanescentes** (não preenchidas nas etapas anteriores), com efetivação **imediata** e por **ordem de chegada**, sem considerar prioridades ou reservas de vaga. O caminho é **Ensino > Matrícula On-Line > Realizar Matrícula Extraordinária**.
+
+Fique atento(a) ao **calendário acadêmico**, pois a Matrícula Extraordinária também tem prazo definido. Caso ela já tenha se encerrado ou você não consiga a vaga desejada, procure a **coordenação do seu curso** ou a **secretaria** (secretaria.fcte@unb.br e (61) 3107-8901) para verificar as alternativas disponíveis no seu caso.
+
+
 ## **5. Recurso Visual**
 
 Para um guia com imagens das telas do SIGAA, acesse o tutorial oficial em PDF disponibilizado pelo Decanato de Ensino de Graduação (DEG):

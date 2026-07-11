@@ -1,4 +1,8 @@
 # SOLICITAÇÃO DE CRÉDITO POR ATIVIDADE COMPLEMENTAR REALIZADA
+
+## COMO E ONDE SOLICITAR
+A solicitação de créditos por atividade complementar (incluindo a participação/apresentação em evento científico) é protocolada **presencialmente na secretaria do curso**. O(A) estudante entrega, **presencialmente na secretaria** (não por e-mail), o formulário preenchido junto com a documentação comprobatória (certificado/declaração, cópia do trabalho, histórico escolar atualizado etc.). Após o protocolo, o(a) estudante recebe o número do processo SEI para acompanhar o andamento, que passa por parecer docente e aprovação da Secretaria Executiva.
+
 ## IDENTIFICAÇÃO DO ALUNO
 O formulário requer o preenchimento de nome completo, matrícula, curso, código da opção de curso, endereço, cidade, estado (UF), telefone e e-mail para correspondência.
 

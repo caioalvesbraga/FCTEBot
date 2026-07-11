@@ -63,8 +63,9 @@
   - [Mudança de Curso](https://saa.unb.br/graduacao/dupla-e-mudanca)
 
 ## Trancamentos
-- **Parcial**: até **26/05/2025** (via SIGAA)  
-- **Geral**: até **27/06/2025** (via SIGAA)  
+- **Parcial automático** (trancamento de disciplina feito pelo próprio aluno no SIGAA): até **26/05/2025**  
+- **Geral automático** (suspensão de programa feita pelo próprio aluno no SIGAA): até **27/06/2025**  
+- **Justificado** (parcial ou geral): por **peticionamento de processo no SEI**, a qualquer tempo, mediante justificativa e comprovantes.  
 
 ## Menção Final
 - **Docente**: até **29/07/2025**  
@@ -159,8 +160,9 @@
   - [Mudança de Curso](https://saa.unb.br/graduacao/dupla-e-mudanca)
 
 ## Trancamentos
-- **Parcial**: até **14/10/2025** (via SIGAA)  
-- **Geral**: até **13/11/2025** (via SIGAA) 
+- **Parcial automático** (trancamento de disciplina feito pelo próprio aluno no SIGAA): até **14/10/2025**  
+- **Geral automático** (suspensão de programa feita pelo próprio aluno no SIGAA): até **13/11/2025**  
+- **Justificado** (parcial ou geral): por **peticionamento de processo no SEI**, a qualquer tempo, mediante justificativa e comprovantes. 
 
 ## Menção Final
 - **Docente**: até **18/12/2025**

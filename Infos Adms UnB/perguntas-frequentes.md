@@ -66,7 +66,7 @@ Por meio do acesso externo via SEI: SEI - Acesso Externo (unb.br).
 
 ## APROVEITAMENTO DE DISCIPLINAS DE OUTRAS INSTITUIÇÕES DE ENSINO SUPERIOR
 Estudei fora da UnB. Como faço para aproveitar as disciplinas cursadas? 
-Todas(os) as(os) alunas(os) que ingressam na universidade têm o prazo de 2 (dois) semestres letivos, contados a partir do ingresso na universidade, para solicitar o aproveitamento de estudos. É necessário o histórico escolar completo contendo todas as disciplinas já cursadas, com aprovação, pelo aluno na instituição de origem, inclusive caso seja estrangeira. São necessárias, também, as correspondentes ementas, isto é, programa de cada disciplina que a(o) aluna(o) deseja aproveitar. O procedimento deve ser feito via peticionamento eletrônico em um único semestre acadêmico, no site https://www.saa.unb.br/sistemas/peticionamento-eletronico.
+Todas(os) as(os) alunas(os) que ingressam na universidade têm o prazo de 2 (dois) semestres letivos (dois períodos letivos), contados a partir do ingresso na universidade, para solicitar o aproveitamento de estudos. É necessário o histórico escolar completo contendo todas as disciplinas já cursadas, com aprovação, pelo aluno na instituição de origem, inclusive caso seja estrangeira. São necessárias, também, as correspondentes ementas, isto é, programa de cada disciplina que a(o) aluna(o) deseja aproveitar. O procedimento deve ser feito via peticionamento eletrônico no SEI (sei.unb.br), acessado pelo Portal do Aluno em aluno.unb.br.
 
 O que não é permitido no aproveitamento de estudos? 
 No processo de aproveitamento de estudos, a(o) aluna(o) não pode aproveitar horas em atividades complementares, cursos de extensão, disciplinas cuja menção não foi de aprovação e, a fim de que não haja duplicidade, disciplinas que já foram avaliadas e aproveitadas. Ainda, é importante que a(o) discente se atente ao prazo (dois períodos letivos a contar do ingresso na Universidade), para que o pedido não seja prejudicado por prescrição.
@@ -260,10 +260,10 @@ Meu processo foi indeferido, o que faço?
 O manual também traz as explicações de como interpor um recurso. 
 
 Preciso de mais orientações sobre desligamento/reintegração. 
-Nesse caso, a CAO auxilia os estudantes que pretendam se desligar voluntariamente, desejam ser reintegrados ou estão em risco de desligamento, conforme informações constantes na página https://deg.unb.br/a-cao.
+Nesse caso, a CAO (Comissão de Acompanhamento e Orientação, vinculada ao DEG/UnB) auxilia os estudantes que pretendam se desligar voluntariamente, desejam ser reintegrados ou estão em risco de desligamento, conforme informações constantes na página https://deg.unb.br/cao. Contato: caodeg@unb.br.
 
 Eu fui desligada(o) da UnB, mas gostaria de retornar. Como e quando posso solicitar a minha reintegração? 
-Uma vez comunicado, formalmente ou não, do desligamento, cabe à(ao) estudante, se tiver interesse, solicitar sua reintegração.Não há edital, o que faz com que a solicitação possa ser feita a qualquer momento. Contudo, é preciso estar atenta(o) aos prazos.Além disso, a solicitação não será aceita passados dois anos ou mais do desligamento.
+Uma vez comunicado, formalmente ou não, do desligamento, cabe à(ao) estudante, se tiver interesse, solicitar sua reintegração. Não há edital, o que faz com que a solicitação possa ser feita a qualquer momento. **Não há mais um prazo máximo determinado para solicitar a reintegração** — o pedido será analisado com base nas motivações e nas condições do(a) estudante, e não em um limite de tempo desde o desligamento.
 
 A solicitação é feita por peticionamento eletrônico, cujos trâmite e peticionamento ocorrem conforme o seguinte link: Orientações sobre Reintegração.
 
@@ -412,6 +412,10 @@ O IRA é uma representação numérica do rendimento acadêmico geral do estudan
 ## PERÍODO DE CURSO
 Como calculo o período em que estou no meu curso?  
 O SIGAA calcula o período de curso automaticamente por meio da contagem do número de semestres cursados pelo estudante, desde seu ingresso naquele curso. Os períodos em que tenham sido registrados Trancamento Geral de Matrícula, independente se justificado ou se automático, não são considerados como cursados, de modo que não são inseridos nessa contagem.
+
+Atenção à diferença: um semestre com Trancamento Geral de Matrícula **conta como semestre utilizado (de permanência no curso), mas não como semestre cursado**. Ou seja, ele consome o tempo de permanência, ainda que nele não haja disciplinas cursadas.
+
+Sobre prorrogações do tempo de permanência: o(a) estudante que estiver prestes a **ultrapassar 16 semestres de permanência** no curso sem ter se formado deve **procurar a secretaria para solicitar a prorrogação de prazo antes de atingir esse limite**, a fim de evitar o desligamento por jubilamento.
 
 ## ALUNO ESPECIAL
 Não participei ou fui aprovado em processos seletivos de ingresso na UnB. É possível fazer disciplinas mesmo assim? 
